@@ -178,7 +178,7 @@ export function DataTable<TData, TValue>( {
                       key={ column.id }
                       className="capitalize"
                       checked={ column.getIsVisible() }
-                      onCheckedChange={ ( value ) => column.toggleVisibility( !!value ) }
+                      onCheckedChange={ ( value ) => column.toggleVisibility( value ) }
                     >
                       { column.id }
                     </DropdownMenuCheckboxItem>
@@ -200,8 +200,8 @@ export function DataTable<TData, TValue>( {
             { table.getHeaderGroups()
                    .map( ( headerGroup ) => (
                      <TableRow key={ headerGroup.id }>
-                       { headerGroup.headers.map( ( header ) => {
-                         return (
+                       { headerGroup.headers.map(
+                         ( header ) => (
                            <TableHead key={ header.id }>
                              { header.isPlaceholder
                                ? null
@@ -210,8 +210,8 @@ export function DataTable<TData, TValue>( {
                                  header.getContext()
                                ) }
                            </TableHead>
-                         );
-                       } ) }
+                         )
+                       ) }
                      </TableRow>
                    ) ) }
           </TableHeader>
@@ -231,7 +231,8 @@ export function DataTable<TData, TValue>( {
                                   key={ cell.id }
                                   className={ cn(
                                     cell.column.id === 'actions' && 'mr-0 flex justify-end',
-                                    cell.column.id === 'id' && 'ml-0 w-14 font-mono'
+                                    cell.column.id === 'id' && 'ml-0 w-14 font-mono',
+                                    'truncate max-w-[200px]'
                                   ) }
                                 >
                                   { flexRender( cell.column.columnDef.cell, cell.getContext() ) }

@@ -246,6 +246,7 @@ export const LongTextQuestion = ( { label }: {
         id="value"
         name="value"
         placeholder="..."
+        rows={ 7 }
       />
     </>
   );

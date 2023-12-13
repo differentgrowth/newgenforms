@@ -33,6 +33,7 @@ import { cn } from "@/lib/utils";
 import { CreateQuestion, QUESTION_TYPE, questionTypes } from "@/definitions/question";
 import { SURVEY_STATUS } from "@/definitions/survey";
 import { SubmitButton } from "@/components/buttons";
+import { Textarea } from "@/components/ui/textarea";
 
 export const NewSurveyForm = ( { className, children }: {
   className?: string;
@@ -285,12 +286,12 @@ export const SurveyQuestionForm = ( { defaultValue, lastOrderValue, customerId, 
             </div>
             <div className="md:col-span-2 flex flex-col gap-1.5">
               <Label htmlFor={ `${ id }-label` }>Question text</Label>
-              <Input
+              <Textarea
                 id={ `${ id }-label` }
                 name="label"
-                type="text"
                 placeholder="Wh..."
                 value={ question.label }
+                rows={ 4 }
                 onChange={ ( event ) => setQuestion( prev => ( {
                   ...prev,
                   [ event.target.name ]: event.target.value

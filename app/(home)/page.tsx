@@ -68,7 +68,7 @@ const Page = () => {
 
       <div className="flex justify-center">
         <Link
-          href="/demo"
+          href="/3ae6b73b-1ad9-436d-83a6-cd7aeb9c0fbe"
           className={ cn(
             buttonVariants( { variant: 'outline' } )
           ) }
