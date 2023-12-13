@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <main>
-      <h1 className="text-center">
+      <h1 className="text-center mx-auto sm:w-3/4 md:w-2/3">
         Elevate Insights with Micro Surveys by NewGenForms
       </h1>
 
