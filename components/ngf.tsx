@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { AnnoyedIcon, FrownIcon, LaughIcon, MehIcon, SmileIcon } from 'lucide-react';
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
+import { CaretSortIcon, CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -74,7 +74,7 @@ export const ButtonsGroupQuestion = ( { label, options }: {
       <Label htmlFor="value">{ label }</Label>
       <div
         className={ cn(
-          "flex flex-row flex-wrap justify-center"
+          "flex flex-row flex-wrap justify-center space-x-1.5"
         ) }
       >
         { options?.map( option => (
@@ -228,7 +228,7 @@ export const FeedbackQuestion = ( { label }: {
             onClick={ () => setValue( option.value ) }
             key={ option.id }
           >
-            <option.icon className="stroke-1 w-4 h-4" />
+            <option.icon className="stroke-1.5 w-4 h-4" />
           </Button>
         ) ) }
       </div>
@@ -313,19 +313,43 @@ export const NumberQuestion = ( { label, step, min, max }: {
   min: number | null;
   max: number | null;
 } ) => {
+  const [ value, setValue ] = useState( '0' );
+
   return (
     <>
       <Label htmlFor="value">{ label }</Label>
-      <Input
-        id="value"
-        name="value"
-        type="number"
-        inputMode="numeric"
-        min={ min ?? -Infinity }
-        max={ max ?? Infinity }
-        step={ step ?? 1 }
-        placeholder="0..."
-      />
+      <div className="flex w-full items-center space-x-1.5">
+        <Button
+          type="button"
+          size="icon"
+          variant="outline"
+          onClick={ () => setValue( prev => Math.max( +prev - ( step ?? 1 ), ( min ?? -Infinity ) )
+                                                .toString() ) }
+        >
+          <ChevronDownIcon className="w-4 h-4" />
+        </Button>
+        <Input
+          id="value"
+          name="value"
+          type="text"
+          inputMode="numeric"
+          min={ min ?? -Infinity }
+          max={ max ?? Infinity }
+          step={ step ?? 1 }
+          placeholder="0..."
+          value={ value }
+          onChange={ ( event ) => setValue( event.target.value.replace( /\D/g, '' ) ) }
+        />
+        <Button
+          type="button"
+          size="icon"
+          variant="outline"
+          onClick={ () => setValue( prev => Math.min( +prev + ( step ?? 1 ), ( max ?? Infinity ) )
+                                                .toString() ) }
+        >
+          <ChevronUpIcon className="w-4 h-4" />
+        </Button>
+      </div>
     </>
   );
 };
@@ -424,15 +448,13 @@ export const RangeQuestion = ( { label, step, min, max }: {
         name="value"
         value={ value.join( 'ngf|-|ngf' ) }
       />
-      <Label htmlFor="value">{ label }</Label>
+      <Label htmlFor="value">
+        { label }
+      </Label>
       <SliderPrimitive.Root
         className="relative flex w-full touch-none select-none items-center"
         min={ Math.max( min ?? 0, 0 ) }
         max={ Math.min( max ?? 100, 100 ) }
-        defaultValue={ [
-          25,
-          75
-        ] }
         step={ step ?? 1 }
         value={ value }
         onValueChange={ ( values ) => setValue( values ) }
@@ -539,7 +561,7 @@ export const SingleSelectionQuestion = ( { label, options }: {
         value={ value }
       />
       <Label htmlFor="value">{ label }</Label>
-      <RadioGroup defaultValue="option-one">
+      <RadioGroup onValueChange={ setValue }>
         { options?.map( option => (
           <div
             key={ option.id }
@@ -548,7 +570,6 @@ export const SingleSelectionQuestion = ( { label, options }: {
             <RadioGroupItem
               value={ option.value }
               id={ option.id }
-              onChange={ () => setValue( option.value ) }
             />
             <Label htmlFor={ option.id }>{ option.value }</Label>
           </div>
@@ -564,7 +585,7 @@ export const SliderQuestion = ( { label, step, min, max }: {
   min: number | null;
   max: number | null;
 } ) => {
-  const [ value, setValue ] = useState( Math.min( max ?? 100, 100 ) );
+  const [ value, setValue ] = useState( [ Math.min( max ?? 100, 100 ) ] );
 
   return (
     <>
@@ -572,13 +593,18 @@ export const SliderQuestion = ( { label, step, min, max }: {
         type="hidden"
         id="value"
         name="value"
-        value={ value }
+        value={ value.join( 'ngf|-|ngf' ) }
       />
-      <Label htmlFor="value">{ label }</Label>
+      <Label htmlFor="value">
+        { label }
+      </Label>
       <Slider
         defaultValue={ [ 66 ] }
+        min={ Math.max( min ?? 0, 0 ) }
         max={ Math.min( max ?? 100, 100 ) }
         step={ step ?? 1 }
+        value={ value }
+        onValueChange={ setValue }
       />
     </>
   );

@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { addDays, format } from "date-fns";
-import { CalendarIcon, CheckIcon, ChevronUpIcon, GearIcon } from "@radix-ui/react-icons";
+import { CalendarIcon, CheckIcon, ChevronUpIcon } from "@radix-ui/react-icons";
 import { DateRange } from "react-day-picker";
 
 import { Button } from "@/components/ui/button";
@@ -41,14 +41,17 @@ export const DatePickerWithRange = ( { className, defaultValue }: Props ) => {
         type="hidden"
         id="from"
         name="from"
-        value={ date?.from?.toISOString().split('T').at(0) }
+        value={ date?.from?.toISOString()
+                    .split( 'T' )
+                    .at( 0 ) }
       />
-
       <input
         type="hidden"
         id="to"
         name="to"
-        value={ date?.to?.toISOString().split('T').at(0) }
+        value={ date?.to?.toISOString()
+                    .split( 'T' )
+                    .at( 0 ) }
       />
       <Popover>
         <PopoverTrigger asChild>

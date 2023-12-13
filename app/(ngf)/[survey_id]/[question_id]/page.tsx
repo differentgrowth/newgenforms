@@ -54,7 +54,7 @@ const Page = async ( { params: { survey_id, question_id }, searchParams: { c } }
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="mt-3 flex flex-col space-y-3">
+          <CardContent className="mt-3 flex flex-col space-y-6">
             <input
               type="hidden"
               name="type"

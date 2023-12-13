@@ -245,7 +245,7 @@ export const updateQuestionOrders = async ( surveyId: string ) => {
       where: { id: item.id },
       data: {
         order: index,
-        next_question: questions.find( i => i.order === item.order + 1 )?.id || null
+        next_question: questions[ index + 1 ]?.id || null
       }
     }
   ) ) );

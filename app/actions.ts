@@ -379,7 +379,9 @@ const questionSchema = z
             QUESTION_TYPE.RANGE ||
             data.type ===
             QUESTION_TYPE.SLIDER
-            ? data.min
+            ? ( data.step !== null && +data.step > 0 )
+              ? data.step
+              : 1
             : null,
       options: data.type ===
                QUESTION_TYPE.BUTTONS_GROUP ||
@@ -434,6 +436,7 @@ export const upsertSurveyQuestion = async ( _prevState: DefaultTemplateState, fo
   }
 
   revalidatePath( `/dashboard/${ parsed.data.customer_id }/edit-survey/${ parsed.data.survey_id }` );
+  // to update state and remove newQuestionForm
   return {
     error: null
   };
@@ -721,6 +724,7 @@ export const addAnswer = async ( _prevState: DefaultTemplateState, formData: For
   const parsed = answerSchema.safeParse( Object.fromEntries( formData.entries() ) as unknown as z.infer<typeof answerSchema> );
 
   if ( !parsed.success ) {
+    // console.log(parsed.error.errors[0])
     if ( parsed.error.errors.at( 0 )
                ?.message
                .startsWith( 'Select between' ) ||
