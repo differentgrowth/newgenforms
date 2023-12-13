@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Answer {
+  id         String   @id @unique @default(uuid())
+  created_at DateTime @default(now())
+  client     String
+  value      String[]
+  questionId String
+  surveyId   String
+  Question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  Survey     Survey   @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+}
+
+model Question {
+  id            String   @id @unique @default(uuid())
+  created_at    DateTime @default(now())
+  register_name String
+  type          String
+  order         Int
+  label         String
+  submit_label  String
+  max           Float?
+  min           Float?
+  step          Float?
+  is_unique     Boolean  @default(false)
+  options       Option[]
+  answers       Answer[]
+  next_question String?
+  customerId    String
+  surveyId      String
+  Customer      Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  Survey        Survey   @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+}
+
+model Option {
+  id         String   @id @unique @default(uuid())
+  value      String
+  questionId String
+  Question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+model Survey {
+  id            String     @id @unique @default(uuid())
+  created_at    DateTime   @default(now())
+  name          String
+  from          DateTime?
+  to            DateTime?
+  timezone      String     @default("Europe/Madrid")
+  redirect      String?
+  final_message String?    @default("Thank you for your answer")
+  status        String     @default("empty")
+  theme         String     @default("light")
+  customerId    String
+  Answer        Answer[]
+  questions     Question[]
+  Customer      Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
+
+model Customer {
+  id                        String     @id @unique @default(uuid())
+  created_at                DateTime   @default(now())
+  email                     String     @unique
+  password                  String
+  role                      String     @default("customer")
+  language                  String     @default("english")
+  timezone                  String     @default("Europe/Madrid")
+  commercial_communications Boolean    @default(true)
+  terms_of_use_accepted     Boolean    @default(true)
+  Questions                 Question[]
+  Surveys                   Survey[]
+}
