@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --accent-foreground: 24 9.8% 10%; /* stone 900 */
+        --accent: 60 4.8% 95.9%; /* stone 100 */
+        --background: 0 0% 100%; /* white */
+        --border: 20 5.9% 90%; /* stone 200 */
+        --card-foreground: 20 14.3% 4.1%; /* stone 950 */
+        --card: 0 0% 100%; /* white */
+        --destructive-foreground: 60 9.1% 97.8%; /* stone 50 */
+        --destructive: 0 84.2% 60.2%; /* red 500 */
+        --foreground: 20 14.3% 4.1%; /* stone 950 */
+        --input: 20 5.9% 90%; /* stone 200 */
+        --muted-foreground: 25 5.3% 44.7%; /* stone 500 */
+        --muted: 60 4.8% 95.9%; /* stone 100 */
+        --popover-foreground: 20 14.3% 4.1%; /* stone 950 */
+        --popover: 0 0% 100%; /* white */
+        --primary-foreground: 60 9.1% 97.8%; /* stone 50 */
+        --primary: 24 9.8% 10%; /* stone 900 */
+        --ring: 20 14.3% 4.1%; /* stone 950 */
+        --secondary-foreground: 24 9.8% 10%; /* stone 900 */
+        --secondary: 60 4.8% 95.9%; /* stone 100 */
+        --radius: 0.3rem;
+    }
+
+    .dark {
+        --accent-foreground: 60 9.1% 97.8%; /* stone 50 */
+        --accent: 12 6.5% 15.1%; /* #stone 800 */
+        --background: 20 14.3% 4.1%; /* stone 950 */
+        --border: 12 6.5% 15.1%; /* stone 800 */
+        --card-foreground: 60 9.1% 97.8%; /* stone 50 */
+        --card: 20 14.3% 4.1%; /* stone 950 */
+        --destructive-foreground: 60 9.1% 97.8%; /* stone 50 */
+        --destructive: 0 62.8% 30.6%; /* red 900 */
+        --foreground: 60 9.1% 97.8%; /* stone 50 */
+        --input: 12 6.5% 15.1%; /* stone 800 */
+        --muted-foreground: 24 5.4% 63.9%; /* stone 400 */
+        --muted: 12 6.5% 15.1%; /* #stone 800 */
+        --popover-foreground: 60 9.1% 97.8%; /* stone 50 */
+        --popover: 20 14.3% 4.1%; /* stone 950 */
+        --primary-foreground: 24 9.8% 10%; /* stone 900 */
+        --primary: 60 9.1% 97.8%; /* stone 50 */
+        --ring: 24 5.7% 82.9%; /* stone 300 */
+        --secondary-foreground: 60 9.1% 97.8%; /* stone 50 */
+        --secondary: 12 6.5% 15.1%; /* #stone 800 */
+        --radius: 0.3rem;
+    }
+
+    .iceland,
+    .dark .iceland {
+        --accent-foreground: 202 80.3% 23.9%; /* sky 900 */
+        --accent: 204, 93.8%, 93.7%; /* sky 100 */
+        --background: 204 100% 97.1%; /* sky 50 */
+        --border: 200.6 94.4% 86.1%; /* sky 200 */
+        --card-foreground: 204 80% 16%; /* sky 950 */
+        --card: 204 100% 97.1%; /* sky 50 */
+        --destructive-foreground: 204 100% 97.1%; /* sky 50 */
+        --destructive: 0 84.2% 60.2%; /* red 500 */
+        --foreground: 204 80% 16%; /* sky 950 */
+        --input: 200.6 94.4% 86.1%; /* sky 200 */
+        --muted-foreground: 25 5.3% 44.7%; /* sky 500 */
+        --muted: 204, 93.8%, 93.7%; /* sky 100 */
+        --popover-foreground: 204 80% 16%; /* sky 950 */
+        --popover: 204 100% 97.1%; /* sky 50 */
+        --primary-foreground: 204 100% 97.1%; /* sky 50 */
+        --primary: 202 80.3% 23.9%; /* sky 900 */
+        --ring: 204 80% 16%; /* sky 950 */
+        --secondary-foreground: 202 80.3% 23.9%; /* sky 900 */
+        --secondary: 204, 93.8%, 93.7%; /* sky 100 */
+        --radius: 0rem;
+    }
+
+    .forest,
+    .dark .forest {
+        --accent-foreground: 151.8 81% 95.9%; /* emerald 50 */
+        --accent: 163.1 88.1% 19.8%; /* emerald 800 */
+        --background: 164 86% 16%; /* emerald 950 */
+        --border: 163.1 88.1% 19.8%; /* emerald 800 */
+        --card-foreground: 151.8 81% 95.9%; /* emerald 50 */
+        --card: 164 86% 16%; /* emerald 950 */
+        --destructive-foreground: 151.8 81% 95.9%; /* emerald 50 */
+        --destructive: 0 62.8% 30.6%; /* red 900 */
+        --foreground: 151.8 81% 95.9%; /* emerald 50 */
+        --input: 163.1 88.1% 19.8%; /* emerald 800 */
+        --muted-foreground: 172.5 66% 50.4%; /* emerald 400 */
+        --muted: 163.1 88.1% 19.8%; /* emerald 800 */
+        --popover-foreground: 151.8 81% 95.9%; /* emerald 50 */
+        --popover: 164 86% 16%; /* emerald 950 */
+        --primary-foreground: 164.2 85.7% 16.5%; /* emerald 900 */
+        --primary: 151.8 81% 95.9%; /* emerald 50 */
+        --ring: 156.2 71.6% 66.9%; /* emerald 300 */
+        --secondary-foreground: 151.8 81% 95.9%; /* emerald 50 */
+        --secondary: 163.1 88.1% 19.8%; /* emerald 800 */
+        --radius: 0.5rem;
+    }
+
+    .ocean,
+    .dark .ocean {
+        --accent-foreground: 225.9 100% 96.7%; /* indigo 50 */
+        --accent: 243.7 54.5% 41.4%; /* indigo 800 */
+        --background: 244 47% 20%; /* indigo 950 */
+        --border: 226.5 100% 93.9%; /* indigo 100 */
+        --card-foreground: 225.9 100% 96.7%; /* indigo 50 */
+        --card: 242.2 47.4% 34.3%; /* indigo 900 */
+        --destructive-foreground: 225.9 100% 96.7%; /* indigo 50 */
+        --destructive: 0 62.8% 30.6%; /* red 900 */
+        --foreground: 225.9 100% 96.7%; /* indigo 50 */
+        --input: 226.5 100% 93.9%; /* indigo 100 */
+        --muted-foreground: 255.1 91.7% 76.3%; /* indigo 400 */
+        --muted: 243.7 54.5% 41.4%; /* indigo 800 */
+        --popover-foreground: 225.9 100% 96.7%; /* indigo 50 */
+        --popover: 244 47% 20%; /* indigo 950 */
+        --primary-foreground: 242.2 47.4% 34.3%; /* indigo 900 */
+        --primary: 225.9 100% 96.7%; /* indigo 50 */
+        --ring: 226.5 100% 93.9%; /* indigo 100 */
+        --secondary-foreground: 225.9 100% 96.7%; /* indigo 50 */
+        --secondary: 243.7 54.5% 41.4%; /* indigo 800 */
+        --radius: 1rem;
+    }
+
+    .sunrise,
+    .dark .sunrise {
+        --accent-foreground: 341.5 75.5% 30.4%; /* rose 900 */
+        --accent: 355.6 100% 94.7%; /* rose 100 */
+        --background: 355.7 100% 97.3%; /* rose 50 */
+        --border: 352.7 96.1% 90%; /* rose 200 */
+        --card-foreground: 343, 88%, 16%; /* rose 950 */
+        --card: 355.7 100% 97.3%; /* rose 50 */
+        --destructive-foreground: 355.7 100% 97.3%; /* rose 50 */
+        --destructive: 0 84.2% 60.2%; /* red 500 */
+        --foreground: 343, 88%, 16%; /* rose 950 */
+        --input: 352.7 96.1% 90%; /* rose 200 */
+        --muted-foreground: 349.7 89.2% 60.2%; /* rose 500 */
+        --muted: 355.6 100% 94.7%; /* rose 100 */
+        --popover-foreground: 343, 88%, 16%; /* rose 950 */
+        --popover: 355.7 100% 97.3%; /* rose 50 */
+        --primary-foreground: 355.7 100% 97.3%; /* rose 50 */
+        --primary: 341.5 75.5% 30.4%; /* rose 900 */
+        --ring: 343, 88%, 16%; /* rose 950 */
+        --secondary-foreground: 341.5 75.5% 30.4%; /* rose 900 */
+        --secondary: 355.6 100% 94.7%; /* rose 100 */
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply rounded bg-foreground;
+    }
+
+    ::-webkit-scrollbar {
+        @apply w-2 h-2;
+    }
+
+    ::selection {
+        @apply bg-foreground text-background;
+    }
+
+    * {
+        @apply border-border;
+    }
+
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-background text-foreground flex flex-col min-h-[100svh];
+    }
+
+    main {
+        @apply px-2 mb-12 grow;
+    }
+
+    h1 {
+        @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+    }
+
+    h2 {
+        @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+    }
+
+    h3 {
+        @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+    }
+
+    h4 {
+        @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    }
+
+    p {
+        @apply leading-7 [&:not(:first-child)]:mt-6;
+    }
+
+    blockquote {
+        @apply mt-6 border-l-2 pl-6 italic
+    }
+
+    ul {
+        @apply my-6 list-disc [&>li]:mt-3;
+    }
+
+    code {
+        @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+    }
+}
+
+@layer base {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+}
